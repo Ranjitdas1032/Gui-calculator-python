@@ -1,17 +1,22 @@
+# Hi this calculator is made by me on 20 june 2024
+
 import tkinter as tk
 
+# varible for Calculation which is string
 calculation = ""
 
+# function to take symbol as string
 def add_to_calculation(symbol):
     global calculation
     calculation += str(symbol)
     text_result.delete(1.0,"end")
     text_result.insert(1.0,calculation)
 
+#function for actual calculation perform
 def evaluate_calculation():
     global calculation
     try:
-        calculation = str(eval(calculation))
+        calculation = str(eval(calculation)) # evaluate the number and symbol
         
         text_result.delete(1.0,"end")
         text_result.insert(1.0,calculation)
@@ -20,6 +25,7 @@ def evaluate_calculation():
         clear_field()
         text_result.insert(1.0, "Error")
 
+# for clearing the screen .
 def clear_field():
     global calculation
     calculation = ""
@@ -27,12 +33,13 @@ def clear_field():
     text_result.delete(1.0,"end")
 
 
-root = tk.Tk()
-root.geometry("300x275")
+root = tk.Tk() # making of variable
+root.geometry("300x275") # screen size.
 
 text_result = tk.Text(root, height=2, width=16 , font=("Arial",24))
-text_result.grid(columnspan=5)
+text_result.grid(columnspan=5) # screen for result
 
+#Numerical buttons------>
 btn_1 = tk.Button(root, text="1",command=lambda: add_to_calculation(1),width = 5 , font=("Arial",14))
 btn_1.grid(row=2,column=1)
 
@@ -62,7 +69,10 @@ btn_9.grid(row=4,column=3)
 
 btn_0 = tk.Button(root, text="0",command=lambda: add_to_calculation(0),width = 5 , font=("Arial",14))
 btn_0.grid(row=5,column=2)
+#--------------------------------------->
 
+
+# symbols ------------------------------->
 btn_plus = tk.Button(root, text="+",command=lambda: add_to_calculation("+"),width = 5 , font=("Arial",14))
 btn_plus.grid(row=2,column=4)
 
@@ -80,11 +90,12 @@ btn_open.grid(row=5,column=1)
 
 btn_close = tk.Button(root, text=")",command=lambda: add_to_calculation(")"),width = 5 , font=("Arial",14))
 btn_close.grid(row=5,column=3)
-
+#---------------------------------------------->
+# symbol of clear and equal to----------->
 btn_clear = tk.Button(root, text="C",command=clear_field,width = 11 , font=("Arial",14))
 btn_clear.grid(row=6,column=1, columnspan=2)
 
 btn_equal = tk.Button(root, text="=",command=evaluate_calculation,width = 11 , font=("Arial",14))
 btn_equal.grid(row=6,column=3, columnspan=2)
 
-root.mainloop()
+root.mainloop() # for runing main loop
